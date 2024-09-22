@@ -1,0 +1,21 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compass</title>
+    <link rel="stylesheet" href="compass.css">
+</head>
+<body>
+    <div class="compass">
+        <div class="needle"></div>
+    </div>
+    <script src="compass.js"></script>
+</body>
+</html> -->
+
+<div class="full-width-block">
+	<div *ngIf="ifIOS" (click)="requestPermissionsIOS()" 
+		class="hidden-overlay" [ngClass]="{'hide': overlayClicked }">
+	</div>
+</div>
