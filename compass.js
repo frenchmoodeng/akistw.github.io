@@ -1,42 +1,41 @@
-const compass = document.querySelector('.compass');
 const needle = document.querySelector('.needle');
 
+// Function to update the needle's direction based on device orientation
 function updateCompass(event) {
     const alpha = event.alpha || 0; // Z-axis rotation (in degrees)
     needle.style.transform = `translateX(-50%) rotate(${-alpha}deg)`;
 }
 
+// Function to request device orientation permission on iOS devices
 function requestDeviceOrientationPermission() {
-    if (/iPad|iPhone|iPod/.test(navigator.platform)) { // Check if it's an iOS device
+    if (/iPad|iPhone|iPod/.test(navigator.platform)) {
+        // For iOS devices that require permission
         if (typeof DeviceOrientationEvent.requestPermission === 'function') {
             DeviceOrientationEvent.requestPermission()
                 .then(permissionState => {
                     if (permissionState === 'granted') {
+                        // Start listening to device orientation after permission is granted
                         window.addEventListener('deviceorientation', updateCompass);
                     } else {
-                      needle.innerHTML = 'Permission denied for device orientation.'
-                      alert('Permission denied for device orientation.');
+                        alert('Permission denied for device orientation.');
                         console.error('Permission denied for device orientation.');
                     }
                 })
-                .catch(console.error);
+                .catch(error => {
+                    console.error('Error requesting device orientation permission:', error);
+                    alert('Error requesting device orientation permission.');
+                });
         } else {
-            needle.innerHTML = 'Device orientation permission not supported.'
-            alert('Device orientation permission not supported.');
+            alert('Device orientation permission not supported on this device.');
             console.error('Device orientation permission not supported.');
         }
     } else {
-        needle.innerHTML = 'Not an iOS device.'
-        alert('Not an iOS device.');
-        console.error('Not an iOS device.');
-
+        // For non-iOS devices, no permission is required
+        window.addEventListener('deviceorientation', updateCompass);
     }
 }
 
-// Ask for permission when the page loads or when user interaction is detected
+// Request permission when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     requestDeviceOrientationPermission();
 });
-
-// You can also ask for permission on user interaction, for example, when a button is clicked
-// buttonElement.addEventListener('click', requestDeviceOrientationPermission);
