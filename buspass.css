@@ -11,7 +11,7 @@ body{
     max-height: 896px;
     color: var(--westar);
     font-family: 'Radio Canada', sans-serif;
-    background-color: #FF0000;
+    background-color: #36454F;
 }
 #part2{
     display: none;
