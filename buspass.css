@@ -130,12 +130,6 @@ nav{
     color: black;
     font-weight: bold;
 }
-
-@keyframes fade-inout{
-    0%{ opacity: 1;}
-    100%{ opacity: 0;}
-}
-
 #animated{
     animation: fade-inout 3s infinite alternate;
     margin-top: 20px;
