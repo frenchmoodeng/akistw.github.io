@@ -131,7 +131,6 @@ nav{
     font-weight: bold;
 }
 #animated{
-    animation: fade-inout 3s infinite alternate;
     margin-top: 20px;
     background-color: var(--sea-buckthorn);
     /* background-image: url("img/background.png"); */
