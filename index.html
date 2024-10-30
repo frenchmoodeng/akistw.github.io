@@ -12,6 +12,11 @@
     <link rel="apple-touch-icon" href="apple-icon-180.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <script src="app-input.js"></script>
+    <style>
+        #animated {
+            transition: transform 0.1s; /* Smooth transition for tilt effect */
+        }
+    </style>
 </head>
 <body>
     <div id="part1">
@@ -80,7 +85,7 @@
                 </div>
                 <div class="countdown" style="text-align: center;">
                     <p class="countdown_text">Ticket expires in:</p>
-                    <h2 id="countdown-timer" style="font-size: 1.5em; color: black; font-weight: bold; margin-top: 10px;"></h2>
+                    <h2 id="countdown-timer" style="font-size: 2em; color: black; font-weight: bold; margin-top: 10px;"></h2>
                 </div>
                 <div class="ticket_id">
                     <p>1241-<span id="id_date"></span>133-438</p>
@@ -97,6 +102,7 @@
             const displayElement = document.getElementById("display");
             const validDateElement = document.getElementById("valid-date");
             const countdownTimerElement = document.getElementById("countdown-timer");
+            const animatedElement = document.getElementById("animated");
             let showTime = true;
             const wordInput = document.getElementById("word");
             let word = "Hello"; // Default word
@@ -129,6 +135,15 @@
                     countdownTimerElement.innerText = "Expired";
                 }
             }
+
+            // Device Orientation event listener
+            window.addEventListener("deviceorientation", function(event) {
+                const tiltX = event.beta; // X-axis tilt
+                const tiltY = event.gamma; // Y-axis tilt
+
+                // Tilt the animated box according to the device orientation
+                animatedElement.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+            });
 
             setInterval(updateDisplay, 2000);
             setInterval(updateCountdown, 1000); // Update countdown every second
