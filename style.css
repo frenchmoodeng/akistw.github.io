@@ -27,12 +27,23 @@
 }
 
 #display {
-    font-size: 1.5em;
+    font-size: 2.5em; /* Increased font size */
     text-align: center;
-    margin-top: 20px;
-    transition: opacity 1s ease; /* Ensure transition is defined here */
+    margin-top: 10px; /* Adjusted to raise text */
+    transition: opacity 1s ease;
+    font-weight: bold; /* Make text bold */
 }
 
 .fade {
-    opacity: 0; /* Fade out effect */
+    opacity: 0;
+}
+
+#animated {
+    transition: transform 0.1s; /* Smooth transition for tilt effect */
+}
+
+.countdown {
+    text-align: center;
+    font-size: 2em; /* Increased font size for countdown */
+    color: black; /* Set color to black */
 }
