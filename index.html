@@ -94,35 +94,36 @@
     </div>
     <script src="buspass.js"></script>
     <script>
-window.onload = function() {
-      const displayElement = document.getElementById("display");
-      let showTime = true;
-      const wordInput = document.getElementById("word");
-      let word = "Hello"; // Default word, can be updated through input
+      window.onload = function() {
+        const displayElement = document.getElementById("display");
+        let showTime = true;
+        const wordInput = document.getElementById("word");
+        let word = "Hello"; // Default word, can be updated through input
 
-      function updateDisplay() {
+        function updateDisplay() {
           displayElement.classList.add("fade");
 
           setTimeout(() => {
-              displayElement.innerText = showTime ? new Date().toLocaleTimeString() : word;
-              displayElement.classList.remove("fade");
-              showTime = !showTime;
-          }, 1000);
-      }
+            displayElement.innerText = showTime ? new Date().toLocaleTimeString() : word;
+            displayElement.classList.remove("fade");
+            showTime = !showTime;
+          }, 1000); // Maintain the fade duration
+        }
 
-      setInterval(updateDisplay, 2000);
-      updateDisplay();
+        setInterval(updateDisplay, 2000);
+        updateDisplay();
 
-      // Set up word based on user input
-      function setUp() {
+        // Set up word based on user input
+        function setUp() {
           word = wordInput.value || "Hello";
-      }
+        }
 
-      window.addEventListener("click", (event) => {
+        window.addEventListener("click", (event) => {
           document.documentElement.requestFullscreen().catch((e) => {
-              console.log(e);
+            console.log(e);
           });
-      });
+        });
+      };
     </script>
   </body>
 </html>
