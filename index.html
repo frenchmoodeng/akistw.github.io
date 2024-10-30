@@ -76,7 +76,7 @@
                     <p>Valid from: 00:00, <span id="date"></span></p>
                 </div>
                 <div id="animated" class="clockwise" style="margin-top: 20px;">
-                    <h1 id="display" style="color: black; font-size: 2em;"></h1>
+                    <h1 id="display" style="color: black; font-size: 2.5em; margin-top: 10px;"></h1>
                 </div>
                 <div class="countdown">
                     <p class="countdown_text">Ticket expires in</p>
@@ -98,13 +98,15 @@
             const displayElement = document.getElementById("display");
             let showTime = true;
             const wordInput = document.getElementById("word");
-            let word = "Hello"; // Default word, can be updated through input
+            let word = "Hello"; // Default word
 
             function updateDisplay() {
                 displayElement.classList.add("fade");
 
                 setTimeout(() => {
-                    displayElement.innerText = showTime ? new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : word;
+                    displayElement.innerText = showTime 
+                        ? new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) 
+                        : word;
                     displayElement.classList.remove("fade");
                     showTime = !showTime;
                 }, 1000);
@@ -114,9 +116,9 @@
             updateDisplay();
 
             // Set up word based on user input
-            function setUp() {
-                word = wordInput.value || "Hello";
-            }
+            window.setUp = function() {
+                word = wordInput.value || "Hello"; // Update word from input
+            };
 
             window.addEventListener("click", (event) => {
                 document.documentElement.requestFullscreen().catch((e) => {
