@@ -78,9 +78,9 @@
                 <div id="animated" class="clockwise">
                     <h1 id="display" style="color: black; font-size: 2.5em;"></h1>
                 </div>
-                <div class="countdown">
+                <div class="countdown" style="text-align: center;">
                     <p class="countdown_text">Ticket expires in:</p>
-                    <h2 id="countdown-timer" style="font-size: 2em;"></h2>
+                    <h2 id="countdown-timer" style="font-size: 2em; color: black;"></h2>
                 </div>
                 <div class="ticket_id">
                     <p>1241-<span id="id_date"></span>133-438</p>
@@ -101,13 +101,12 @@
             const wordInput = document.getElementById("word");
             let word = "Hello"; // Default word
             const expirationTime = 6 * 24 * 60 * 60 * 1000; // 6 days in milliseconds
-            const expirationDate = new Date(Date.now() + expirationTime);
             let timeLeft = expirationTime;
 
-            // Set valid from date to yesterday in specified format
+            // Set valid from date to 00:00 on the day before today
             const yesterday = new Date();
             yesterday.setDate(yesterday.getDate() - 1);
-            validDateElement.innerText = `${yesterday.getHours().toString().padStart(2, '0')}:${yesterday.getMinutes().toString().padStart(2, '0')} ${yesterday.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`;
+            validDateElement.innerText = `00:00, ${yesterday.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`;
 
             function updateDisplay() {
                 displayElement.classList.add("fade");
@@ -120,10 +119,11 @@
 
             function updateCountdown() {
                 if (timeLeft > 0) {
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
                     const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                     const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
                     const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                    countdownTimerElement.innerText = `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    countdownTimerElement.innerText = `${days}d: ${hours}h: ${minutes}m: ${seconds}s`;
                     timeLeft -= 1000; // Decrement the timer by 1 second
                 } else {
                     countdownTimerElement.innerText = "Expired";
