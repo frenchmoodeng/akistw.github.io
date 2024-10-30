@@ -40,10 +40,15 @@
 
 #animated {
     transition: transform 0.1s; /* Smooth transition for tilt effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ensure it takes full height of the container */
 }
 
 .countdown {
     text-align: center;
     font-size: 2em; /* Increased font size for countdown */
     color: black; /* Set color to black */
+    font-weight: bold; /* Make text bold */
 }
