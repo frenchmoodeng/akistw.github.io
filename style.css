@@ -1,4 +1,4 @@
-.container-part1 .color, .container-part1 .word{
+.container-part1 .color, .container-part1 .word {
     margin-top: 25%;
     background-color: aqua;
     width: 100%;
@@ -8,17 +8,31 @@
     text-align: center;
     font-size: 1.5em;
 }
-.container-part1 select, .container-part1 input{
+
+.container-part1 select, .container-part1 input {
     width: 140px;
     height: 30px;
     margin-top: 10px;
 }
-.container-part1 .submit{
+
+.container-part1 .submit {
     margin-top: 5%;
     width: 50px;
     height: 30px;
     margin-left: 40%;
 }
-.container-part1 a{
+
+.container-part1 a {
     text-decoration: none;
+}
+
+#display {
+    font-size: 1.5em;
+    text-align: center;
+    margin-top: 20px;
+    transition: opacity 1s ease;
+}
+
+.fade {
+    opacity: 0;
 }
